@@ -2,6 +2,8 @@
 # Feel free to add content and custom Front Matter to this file.
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 ---
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>Species Table</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +15,8 @@
         }
     
         table {
+            margin: auto;
+            display: table;
             margin-top: 2rem;
             margin-bottom: 1rem;
             width: 80%;
@@ -86,7 +90,7 @@
 </head>
 <body>
 
-<table align="center">
+<table>
     <tr>
         <th>Photo</th>
         <th>Name</th>
@@ -110,17 +114,17 @@
                  alt="{{ species.common_name }}"
                   title="{{species.image_attribution}}"></a>
             </td>
-            <td align="center">
+            <td>
                 <strong>{{species.common_name}}</strong> (<i>{{species.name}}</i>)
             </td>
-            <td align="center">
+            <td>
                 {{species.family.name}}
             </td>
-            <td align="center">
+            <td>
                 {{species.order.name}}
             </td>
-            <td align="center">
-                <strong font-size: 20px>{{species.samples | size}}</strong>
+            <td>
+                <strong style="font-size: 18px;">{{species.samples | size}}</strong>
             </td>
         </tr>
     {% endfor %}
