@@ -1,0 +1,133 @@
+---
+# Feel free to add content and custom Front Matter to this file.
+# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
+---
+<head>
+    <title>Species Table</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #2c2d30;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+    
+        table {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            width: 80%;
+            border-collapse: collapse;
+            border: 3px #ddd;
+        }
+    
+        tr:first-child th {
+            font-size: 18px;
+            background-color: #444;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 3px;
+        }
+    
+        tr:nth-child(odd) {
+            background-color: #444;
+        }
+    
+        tr:nth-child(even) {
+            background-color: #2c2d30;
+        }
+    
+        td {
+            padding: 10px;
+            text-align: center;
+            border-top: 3px solid #ddd;
+            border-bottom: 3px solid #ddd;
+            word-wrap: break-word; 
+            overflow-wrap: break-word;
+        }
+    
+        td a img {
+            width: 10rem;
+            height: 10rem;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+    
+        span {
+            background-color: rgb(172, 10, 10); 
+            color: white;
+            font-size: 17px; 
+            font-weight: bold; 
+            padding: 3.5px;
+            display: block;
+            text-align: center;
+            border-radius: 5px;
+        }
+    
+        footer {
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+            margin-top: 50px;
+            padding: 10px;
+            font-size: 20px;
+            color: rgb(184, 175, 175);
+        }
+
+        div.relative {
+        position: relative;
+        top: -25px;
+        left: -40px;
+        } 
+
+        div.absolute {
+        position: absolute;
+        }
+    </style>
+</head>
+<body>
+
+<table align="center">
+    <tr>
+        <th>Photo</th>
+        <th>Name</th>
+        <th>Family</th>
+        <th>Order</th>
+        <th>Sequenced Resources</th>
+    </tr>
+    {% for species in site.species %}
+        <tr>
+            <td>
+                <div class="absolute">
+                {% for sample in species.samples %}
+                    {% if sample.datatype == "Bionano" %}
+                    <div class="relative">
+                        <span>Bionano</span>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+                <a href="{{ species.url }}"><img src="{{ species.image }}"
+                 alt="{{ species.common_name }}"
+                  title="{{species.image_attribution}}"></a>
+            </td>
+            <td align="center">
+                <strong>{{species.common_name}}</strong> (<i>{{species.name}}</i>)
+            </td>
+            <td align="center">
+                {{species.family.name}}
+            </td>
+            <td align="center">
+                {{species.order.name}}
+            </td>
+            <td align="center">
+                <strong font-size: 20px>{{species.samples | size}}</strong>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+<footer>
+    Autor: Damian Dobrew
+</footer>
+
+</body>
